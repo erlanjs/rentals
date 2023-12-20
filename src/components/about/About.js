@@ -4,7 +4,7 @@ import bg from "../../images/about-img.png";
 export default function About() {
   return (
     <>
-      <div className="bg-[#EBEBEB] py-[150px]">
+      <div className="bg-[#EBEBEB] py-[150px]" id="about">
         <div className="container">
           <div className="flex items-center justify-between">
             <div className="">

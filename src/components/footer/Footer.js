@@ -5,7 +5,7 @@ import TgIcon from "../../images/TgIcon";
 
 export default function Footer() {
   return (
-    <div className="bg-[#1C1C1C] py-[90px]">
+    <div className="bg-[#1C1C1C] py-[90px]" id="footer">
       <div className="container">
         <div className="flex flex-col items-center gap-5">
           <a

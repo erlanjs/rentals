@@ -16,7 +16,7 @@ export default function CategoryBlock() {
   }, []);
 
   return (
-    <div className="py-[100px]">
+    <div className="py-[100px]" id="shop">
       <div className="container">
         <div className="flex flex-col items-center">
           <h3 className="text-[42px] font-semibold">Категории платьев</h3>
@@ -25,16 +25,24 @@ export default function CategoryBlock() {
             натуральные материалы
           </p>
         </div>
-        <div className="flex justify-center gap-2 mt-5">
+        <div className="flex justify-center flex-wrap gap-2 mt-5">
           {data.map((category) => (
             <div
-              className="p-6 rounded-lg font-bold border-solid border-[3px] border-red cursor-pointer"
+              style={{
+                background: `url(${category.image}) no-repeat center/cover`,
+              }}
+              className="w-[500px] h-[260px] relative rounded-lg font-bold border-solid border-[3px] border-red cursor-pointer"
               key={category.id}
               onClick={() =>
                 navigate(`/category-detail/${category.name}/${category.id}`)
               }
             >
-              {category.name}
+              <div
+                className="absolute w-full h-full top-0 left-0 bg-[] flex items-center justify-center text-[25px] text-white"
+                style={{ background: "rgba(0, 0, 0, 0.3)" }}
+              >
+                {category.name}
+              </div>
             </div>
           ))}
         </div>
