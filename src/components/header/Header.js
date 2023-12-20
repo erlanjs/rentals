@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LogoIcon from "../../images/LogoIcon";
 import { SlHandbag } from "react-icons/sl";
 
@@ -31,6 +31,21 @@ export default function Header({ mode }) {
       setModal(false);
     }
   });
+
+  const [basket, setBasket] = useState([]);
+
+  function getProductInBasket() {
+    let data = JSON.parse(localStorage.getItem("basket")) || [];
+    setBasket(data);
+  }
+
+  useEffect(() => {
+    getProductInBasket();
+  }, []);
+
+  let total = 0;
+  basket.map((el) => (total += el.price));
+  console.log(total);
 
   return (
     <div className="absolute top-0 w-full z-10 py-3">
@@ -66,12 +81,12 @@ export default function Header({ mode }) {
             style={{ display: modal ? "" : "none" }}
             className="fixed z-10 w-[100%] h-[100vh] bg-[#4e4e4e82] backdrop-blur top-[0] right-[0] flex items-center justify-center "
           >
-            <div className="bg-white flex gap-[28px] pt-[15px] pl-[49px] pb-[120px] pr-[52px] flex-col items-end absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20">
+            <div className="bg-white flex gap-[28px]  pt-[15px] pl-[49px] pb-[80px] pr-[52px] flex-col items-end absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20">
               <svg
                 onClick={() => setModal(false)}
                 xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="50"
+                width="30"
+                height="30"
                 viewBox="0 0 50 50"
                 fill="none"
               >
@@ -87,33 +102,37 @@ export default function Header({ mode }) {
                   </clipPath>
                 </defs>
               </svg>
-              <div className="flex">
-                <form className="flex flex-col">
-                  <label className="text-[30px] font-[300] font-[Open Sans] mb-[9px] ml-[13px]">
-                    Ваше имя *
-                  </label>
-                  <input
-                    type="text"
-                    className="h-[104.125px] w-[673.921px] outline-none text-[30px] px-[30px] border-[1px] border-[solid] border-[#000] rounded-[10px]"
-                  />
-                  <label className="text-[30px] font-[300] font-[Open Sans] mt-[22px] mb-[9px] ml-[7px]">
-                    Телефон (только цифры)*
-                  </label>
-                  <input
-                    type="text"
-                    className="h-[104.125px] w-[673.921px] outline-none text-[30px] px-[30px] border-[1px] border-[solid] border-[#000] rounded-[10px]"
-                  />
-                  <label className="text-[30px] font-normal font-[Open Sans]">
-                    Даты бронирования
-                  </label>
-                  <div>
+              <div className="mod">
+                <div className="flex flex-col">
+                  <label className="label">Ваше имя *</label>
+                  <input className="inpText" type="text" />
+                  <label className="label">Телефон (только цифры)*</label>
+                  <input className="inpText" type="text" />
+                  <label className="label">Даты бронирования</label>
+                  <div className="date">
                     <input type="date" />
                     <input type="date" />
                   </div>
-                  <button>Хочу забронировать</button>
-                </form>
-                <div>
-                  <p>Прокат платья Total dress white</p>
+                  <button className="want">Хочу забронировать</button>
+                </div>
+                <div className="basket">
+                  <div className="bas">
+                    {basket
+                      ? basket.map((el) => (
+                          <div className="cart">
+                            <img src={el.images[0].image} alt="" />
+                            <div className="cart-text">
+                              <h1>{el.name}</h1>
+                              <h2>{el.price} сом</h2>
+                            </div>
+                          </div>
+                        ))
+                      : "loading..."}
+                  </div>
+                  <div className="total flex">
+                    <p>Итого</p>
+                    <span>{total} сом</span>
+                  </div>
                 </div>
               </div>
             </div>
