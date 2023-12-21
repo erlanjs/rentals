@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function Card({ data }) {
   const navigate = useNavigate();
   return (
-    <div className="w-[275px] flex flex-col items-center gap-4">
+    <div className="w-[275px] flex flex-col items-center gap-4 mb-[50px]">
       <img
         src={data.images[0].image}
         alt=""
-        className="w-full cursor-pointer"
+        className="w-full cursor-pointer h-[300px] w-[200px] object-cover"
         onClick={() => navigate(`/dress-detail/${data.id}`)}
       />
       <h3

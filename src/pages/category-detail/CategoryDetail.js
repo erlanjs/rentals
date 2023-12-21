@@ -23,7 +23,7 @@ export default function CategoryDetail() {
       <div className="flex justify-center items-center mt-[150px] pb-[100px]">
         <h1 className="text-[40px] font-bold">{name}</h1>
       </div>
-      <div className="flex justify-center gap-3">
+      <div className="flex justify-center gap-3 w-[1200px] mx-auto flex-wrap pb-[100px]">
         {data.map((card) => (
           <Card data={card} />
         ))}

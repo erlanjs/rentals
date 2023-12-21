@@ -56,7 +56,7 @@ export default function Header({ mode }) {
             {links.map((link, index) => (
               <a
                 href={link.link}
-                className="text-white font-semibold text-lg"
+                className="text-white font-semibold text-lg  "
                 style={{ color: mode ? "black" : "white" }}
                 key={index}
               >
